@@ -1,0 +1,30 @@
+{
+  "name": "example-package-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal example usage of @madooei/example-package.",
+  "scripts": {
+    "process": "tsx --no-warnings ./src/process.ts",
+    "aggregate": "tsx --no-warnings ./src/aggregate.ts",
+    "canvas": "tsx --no-warnings ./src/canvas.ts",
+    "sis": "tsx --no-warnings ./src/sis.ts",
+    "chart": "tsx --no-warnings ./src/chart.ts",
+    "build": "tsc",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9",
+    "chartjs-node-canvas": "^5.0.0",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "csv-parse": "^5.6.0",
+    "csv-stringify": "^6.5.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^4.0.1",
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.4",
+    "typescript": "^5.0.0"
+  }
+}
