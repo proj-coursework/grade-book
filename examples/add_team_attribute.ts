@@ -1,5 +1,7 @@
+// This script adds a "Team" column to a CSV file (TARGET_FILENAME) based on team information from another CSV file (TEAMS_FILENAME).
+
 // Set these variables before running the script
-const CURRENT_CLASS = "spring2025_en_601_421"; // Example: "spring2025_en_601_421"
+const CURRENT_CLASS = "spring2025_en_601_264"; 
 const TEAMS_FILENAME = "teams.csv"; // The file with team info
 const TARGET_FILENAME = "grades.csv"; // The file to add the team column to
 
