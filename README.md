@@ -18,8 +18,6 @@ To process the grades and prepare the files for Canvas and SIS, you must do the 
 
 1. Create a subfolder in the `data` folder with the name of the class you want to process. For example, if you want to process the grades for EN.601.421 Object-Oriented Software Engineering (Spring 2025), you would create a folder called `spring2025_en_601_421`.
 2. Update the `.env` file to set `CURRENT_CLASS` to the name of the class you created in step 1. For example, if you created a folder called `spring2025_en_601_421`, you would set `CURRENT_CLASS` to `spring2025_en_601_421`. (If you don't have a `.env` file, copy the `.env.example` file and rename it to `.env`.)
-
-```bash
 3. Export the Gradescope raw data from its website and save it as `gradescope_raw.csv` in the class folder.
 4. Run the `process` script (`pnpm run process`) to process the gradescope data.
 5. Create a `config.ts` file in the class folder. This file will contain the configuration for the class. See the [The Class Config File](#the-class-config-file) section for more details.
