@@ -1,9 +1,11 @@
 {
-  "name": "example-package-demo",
+  "name": "grade-book",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Minimal example usage of @madooei/example-package.",
+  "description": "Collection of scripts I use to aggregate my students' grades and post it on LMS and SIS",
+  "author": "Ali Madooei",
+  "license": "MIT",
   "scripts": {
     "process": "tsx --no-warnings ./src/process.ts",
     "aggregate": "tsx --no-warnings ./src/aggregate.ts",
