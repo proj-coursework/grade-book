@@ -16,5 +16,6 @@
   "editor.mouseWheelZoom": true, // Enable mouse wheel zoom
   "editor.formatOnSave": true, // Format the code on save
   "editor.defaultFormatter": "esbenp.prettier-vscode", // Set the default formatter
-  "typescript.tsdk": "node_modules/typescript/lib" // Set the TypeScript SDK
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": ["chartjs", "Gradescope"] // Set the TypeScript SDK
 }
