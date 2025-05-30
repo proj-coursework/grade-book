@@ -342,11 +342,3 @@ You can embed this PNG in your reports or share it with students as needed.
 
 > [!TIP]
 > You can set the `SHOW_CUTOFF_LABELS` flag to `false` to hide the grade cutoff labels, among other configurable flags.
-
-## Roadmap
-
-Add a new script `remove_audit_students.ts` to `examples` folder to remove audit students from the `gradescope_processed.csv` file.
-
-We should expect to provide an `audit.csv` file that contains the list of audit students in the course data folder. The script will remove these students from the `gradescope_processed.csv` file.
-
-The `audit.csv` should have a format similar to the `gradescope_raw.csv` file, with the first 5 columns: First Name, Last Name, SID, Email, and Sections.
