@@ -64,7 +64,7 @@ function loadAuditStudents(classPath: string): Set<string> {
 
   if (!fs.existsSync(auditPath)) {
     throw new Error(
-      `audit.csv not found in ${classPath}. Please create this file with audit student data.`
+      `audit.csv not found in ${classPath}. Please create this file with audit student data.`,
     );
   }
 
@@ -109,11 +109,11 @@ function createBackups(classPath: string): void {
 
   const csvBackupPath = path.join(
     classPath,
-    "gradescope_processed_with_audit.csv"
+    "gradescope_processed_with_audit.csv",
   );
   const metaBackupPath = path.join(
     classPath,
-    "gradescope_meta_with_audit.json"
+    "gradescope_meta_with_audit.json",
   );
 
   // Only create backups if they don't already exist
@@ -133,7 +133,7 @@ function createBackups(classPath: string): void {
  */
 function removeAuditStudents(
   students: StudentRecord[],
-  auditSIDs: Set<string>
+  auditSIDs: Set<string>,
 ): { filteredStudents: StudentRecord[]; removedStudents: StudentRecord[] } {
   const filteredStudents: StudentRecord[] = [];
   const removedStudents: StudentRecord[] = [];
@@ -155,7 +155,7 @@ function removeAuditStudents(
  */
 function updateMetadata(
   metadata: GradescopeMetadata,
-  newStudentCount: number
+  newStudentCount: number,
 ): GradescopeMetadata {
   return {
     ...metadata,
@@ -174,7 +174,7 @@ function saveUpdatedCSV(classPath: string, students: StudentRecord[]): void {
 
   if (students.length === 0) {
     console.warn(
-      "⚠️  Warning: No students remaining after removing audit students"
+      "⚠️  Warning: No students remaining after removing audit students",
     );
   }
 
@@ -196,7 +196,7 @@ function saveUpdatedCSV(classPath: string, students: StudentRecord[]): void {
  */
 function saveUpdatedMetadata(
   classPath: string,
-  metadata: GradescopeMetadata
+  metadata: GradescopeMetadata,
 ): void {
   const metaPath = path.join(classPath, "gradescope_meta.json");
 
@@ -210,16 +210,16 @@ function saveUpdatedMetadata(
 function saveRemovalReport(
   classPath: string,
   removedStudents: StudentRecord[],
-  auditSIDs: Set<string>
+  auditSIDs: Set<string>,
 ): void {
   const reportPath = path.join(classPath, "audit_removal_report.json");
 
   // Find audit students that were not found in the processed data
   const processedSIDs = new Set(
-    removedStudents.map((student) => String(student.SID).trim())
+    removedStudents.map((student) => String(student.SID).trim()),
   );
   const notFoundAuditSIDs = Array.from(auditSIDs).filter(
-    (sid) => !processedSIDs.has(sid)
+    (sid) => !processedSIDs.has(sid),
   );
 
   const report = {
@@ -273,7 +273,7 @@ function main(): void {
     console.log("🔄 Removing audit students...");
     const { filteredStudents, removedStudents } = removeAuditStudents(
       students,
-      auditSIDs
+      auditSIDs,
     );
 
     console.log(`   Removed ${removedStudents.length} audit students`);
@@ -300,14 +300,14 @@ function main(): void {
 
     if (removedStudents.length !== auditSIDs.size) {
       console.log(
-        "\n⚠️  Note: Some audit students were not found in the processed data."
+        "\n⚠️  Note: Some audit students were not found in the processed data.",
       );
       console.log("   Check audit_removal_report.json for details.");
     }
   } catch (error) {
     console.error(
       "❌ Error:",
-      error instanceof Error ? error.message : String(error)
+      error instanceof Error ? error.message : String(error),
     );
     process.exit(1);
   }
