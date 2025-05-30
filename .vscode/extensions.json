@@ -1,3 +1,9 @@
 {
-  "recommendations": ["mechatroner.rainbow-csv", "grapecity.gc-excelviewer"]
+  "recommendations": [
+    "ms-vscode.js-debug-nightly",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "mechatroner.rainbow-csv",
+    "grapecity.gc-excelviewer"
+  ]
 }
