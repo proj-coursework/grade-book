@@ -342,3 +342,92 @@ You can embed this PNG in your reports or share it with students as needed.
 
 > [!TIP]
 > You can set the `SHOW_CUTOFF_LABELS` flag to `false` to hide the grade cutoff labels, among other configurable flags.
+
+## Roadmap
+
+Update the scripts to account for a case where we have multiple sections of the same class. For example, we typically have two sections of EN.601.226 Data Structures. Both sections share the same assignments, but each section has its version of the exams. Here is an example `gradescope_meta.jason` file for this case:
+
+```json
+{
+  "counts": {
+    "assignments": 18,
+    "students": 114
+  },
+  "assignments": [
+    {
+      "name": "Final Exam",
+      "max_points": 35
+    },
+    {
+      "name": "Homework 1: Flappy Box",
+      "max_points": 22
+    },
+    {
+      "name": "Homework 2: Sparse List",
+      "max_points": 20
+    },
+    {
+      "name": "Homework 3: Sorting & Searching",
+      "max_points": 23
+    },
+    {
+      "name": "Homework 4: BBST & PQ",
+      "max_points": 33
+    },
+    {
+      "name": "Homework 5: Hash Tables",
+      "max_points": 23
+    },
+    {
+      "name": "Homework 6: Graphs & Shortest Path",
+      "max_points": 34
+    },
+    {
+      "name": "Midterm (Section 1)",
+      "max_points": 25
+    },
+    {
+      "name": "Midterm (Section 2)",
+      "max_points": 25
+    },
+    {
+      "name": "Quiz 1 - Section 1",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 1 - Section 2",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 2 - Makeup",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 2 Version A",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 2 Version B",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 3 - Section 1",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 3 - Section 2",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 4 (Version 1)",
+      "max_points": 10
+    },
+    {
+      "name": "Quiz 4 (Version 2)",
+      "max_points": 10
+    }
+  ]
+}
+```
+
+In this case, the assignments and the final exam are the same for both sections, but the midterm and quizzes are different. We need, perhaps, a post processing script (to be added to the `examples` folder) that will take the `gradescope_processed.csv` file and updates it to combine, e.g., "Quiz 3 - Section 1" and "Quiz 3 - Section 2" into a single "Quiz 3" column, and so on for the other courseworks.
