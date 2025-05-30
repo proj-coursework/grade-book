@@ -302,3 +302,9 @@ Data Inconsistency → Error Detection → JSON Report → Manual Resolution
 - All scripts depend on `CURRENT_CLASS` environment variable
 - Processing scripts require class-specific `config.ts`
 - Export scripts require external system exports
+
+### Example Scripts Dependencies
+
+- `examples/combine_sections_assignments.ts` → `gradescope_processed.csv`
+- `examples/remove_audit_students.ts` → `gradescope_processed.csv` + `audit.csv` (planned)
+- Example scripts follow same patterns as core scripts but for specialized data transformations

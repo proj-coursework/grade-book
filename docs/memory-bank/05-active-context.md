@@ -2,20 +2,27 @@
 
 ## Current Work Focus
 
-### Memory Bank Initialization (Completed)
+### Recent Task Completion: Combine Sections Script
 
-**Status**: ✅ Complete - All core memory bank files created
+**Status**: ✅ Complete - Multi-section assignment combination script implemented
 
 **Completed**:
+- ✅ Created `examples/combine_sections_assignments.ts` script
+- ✅ Handles merging section-specific assignments (e.g., "Quiz 3 - Section 1" + "Quiz 3 - Section 2" → "Quiz 3")
+- ✅ Processes `gradescope_processed.csv` to combine assignments with section suffixes
+- ✅ Generates new processed file with combined assignments
+- ✅ Addresses multi-section course support roadmap item
 
-- ✅ `01-project-brief.md` - Foundation document with project overview and requirements
-- ✅ `02-product-context.md` - Problem definition and user experience goals
-- ✅ `03-system-patterns.md` - Architecture patterns and implementation details
-- ✅ `04-tech-context.md` - Technology stack and development setup
-- ✅ `05-active-context.md` - Current work focus and recent changes
-- ✅ `06-progress.md` - Project status and comprehensive feature documentation
+### Next Roadmap Task: Remove Audit Students Script
 
-**Memory Bank Status**: Fully initialized and ready for use
+**Status**: 🔄 Ready to implement
+
+**Requirements**:
+- Create `examples/remove_audit_students.ts` script
+- Remove audit students from `gradescope_processed.csv` file
+- Expect `audit.csv` file in course data folder with same format as gradescope raw data
+- Match students by SID and remove them from processed data
+- Preserve original file structure and format
 
 ### Project State Assessment
 

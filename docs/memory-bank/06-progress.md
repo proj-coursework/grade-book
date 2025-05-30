@@ -72,24 +72,33 @@ The Grade Book is a **fully functional, production-ready system** that has been 
 - **Code Quality**: Prettier formatting, type checking scripts
 - **Documentation**: Comprehensive README with step-by-step instructions
 
+### ✅ Example Scripts and Utilities
+
+- **Multi-Section Support** (`examples/combine_sections_assignments.ts`): Combines section-specific assignments
+  - Merges assignments with section suffixes (e.g., "Quiz 3 - Section 1" + "Quiz 3 - Section 2" → "Quiz 3")
+  - Processes `gradescope_processed.csv` to handle multi-section courses
+  - Preserves original data structure while combining related assignments
+  - Addresses roadmap requirement for multi-section course support
+
 ## What's Left to Build (Future Enhancements)
 
-### 🔄 Multi-Section Support (Roadmap Priority)
+### 🔄 Current Roadmap Task: Remove Audit Students Script
 
-**Current Limitation**: System handles single section per class
-**Proposed Solution**: Post-processing scripts to combine section-specific assignments
+**Status**: Ready to implement
+**Priority**: High - Needed for courses with audit students
 
-**Example Scenario**: EN.601.226 Data Structures with two sections
-
-- Shared assignments: Homeworks, Final Exam
-- Section-specific: "Midterm (Section 1)" vs "Midterm (Section 2)"
-- Need script to combine into single "Midterm" column
+**Requirements**:
+- Create `examples/remove_audit_students.ts` script
+- Remove audit students from `gradescope_processed.csv` file
+- Expect `audit.csv` file in course data folder with same format as gradescope raw data
+- Match students by SID and remove them from processed data
+- Preserve original file structure and format
 
 **Implementation Approach**:
-
-- Create example script in `examples/` folder
-- Process `gradescope_processed.csv` to merge section-specific columns
-- Update documentation with multi-section workflow
+- Read `audit.csv` file to get list of audit student SIDs
+- Filter `gradescope_processed.csv` to exclude audit students
+- Generate new processed file without audit students
+- Document usage in examples README
 
 ### 🔮 Potential Future Improvements
 
