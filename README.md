@@ -53,10 +53,10 @@ To download student grades from Gradescope:
 - Each row represents one student's data, with the first row being the header.
 - The first 5 columns contain: First Name, Last Name, SID, Email, and Sections.
 - The remaining columns show assignment data. For each assignment (e.g., "Assignment 1"), there are 4 columns:
-    - `Assignment 1` - The student's actual score
-    - `Assignment 1 - Max Points` - The maximum possible points (usually the same for all students)
-    - `Assignment 1 - Submission Time` - When the student submitted the assignment
-    - `Assignment 1 - Lateness (H:M:S)` - How late the submission was
+  - `Assignment 1` - The student's actual score
+  - `Assignment 1 - Max Points` - The maximum possible points (usually the same for all students)
+  - `Assignment 1 - Submission Time` - When the student submitted the assignment
+  - `Assignment 1 - Lateness (H:M:S)` - How late the submission was
 - The final column, `Total Lateness (H:M:S)`, shows the sum of all late submissions for each student.
 
 ### Processing the Gradescope Raw Data
@@ -135,49 +135,63 @@ export type COURSE_WORK = {
   assignments: string[]; // Should be the same as the assignment names in the `gradescope_meta.json` file
   weight: number;
   max_points?: number; // If not provided, the maximum points will be the sum of all assignment maximum points
-}
+};
 
 export const CLASS_COURSE_WORK: COURSE_WORK[] = [
   {
     name: "Homeworks",
     assignments: ["Homework 1", "Homework 2"],
-    weight: 10
+    weight: 10,
   },
   {
     name: "Quizzes",
     assignments: ["Quiz 1", "Quiz 2"],
-    weight: 10
+    weight: 10,
   },
   {
     name: "Project",
-    assignments: ["Planning", "Iteration 1", "Iteration 2", "Iteration 3", "Iteration 4", "Delivery"],
-    weight: 65
+    assignments: [
+      "Planning",
+      "Iteration 1",
+      "Iteration 2",
+      "Iteration 3",
+      "Iteration 4",
+      "Delivery",
+    ],
+    weight: 65,
   },
   {
     name: "Presentation",
     assignments: ["Pitch", "Practice", "Final"],
-    weight: 10
+    weight: 10,
   },
   {
     name: "Classwork",
-    assignments: ["Classwork 1", "Classwork 2", "Classwork 3", "Classwork 4", "Classwork 5", "Classwork 6"],
+    assignments: [
+      "Classwork 1",
+      "Classwork 2",
+      "Classwork 3",
+      "Classwork 4",
+      "Classwork 5",
+      "Classwork 6",
+    ],
     weight: 5,
-  }
+  },
 ];
 
 export const CLASS_GRADE_CUTOFFS = {
   "A+": 97,
-  "A": 93,
+  A: 93,
   "A-": 90,
   "B+": 87,
-  "B": 83,
+  B: 83,
   "B-": 80,
   "C+": 77,
-  "C": 73,
+  C: 73,
   "C-": 70,
   "D+": 67,
-  "D": 63,
-  "F": 0
+  D: 63,
+  F: 0,
 };
 ```
 
@@ -189,11 +203,11 @@ The `grades.csv` file will contain:
 
 - The five standard columns: First Name, Last Name, SID, Email, and Sections.
 - For each assignment category in `CLASS_COURSE_WORK`, one column containing the student's weighted score, calculated by:
-    - Adding up all assignment scores in the category
-    - Adding up all maximum possible points in the category
-    - Converting to a percentage (total score ÷ total possible points)
-    - Multiplying by the category weight to get the final category score
-    - The resulting file will have five category columns: `Homeworks`, `Quizzes`, `Project`, `Presentation`, and `Classwork`
+  - Adding up all assignment scores in the category
+  - Adding up all maximum possible points in the category
+  - Converting to a percentage (total score ÷ total possible points)
+  - Multiplying by the category weight to get the final category score
+  - The resulting file will have five category columns: `Homeworks`, `Quizzes`, `Project`, `Presentation`, and `Classwork`
 - A final score column (sum of all category scores)
 - A letter grade column (determined using `CLASS_GRADE_CUTOFFS`)
 
@@ -294,7 +308,7 @@ If you want students to see their grades, you need to make sure that "Grades" ar
 ### Posting the Grades to SIS
 
 > [!NOTE]
-> This step is implemented in the `src/sis.ts` file. To run it, execute the following command: `pnpm run sis`. 
+> This step is implemented in the `src/sis.ts` file. To run it, execute the following command: `pnpm run sis`.
 
 To upload grades to SIS, we'll transform `grades.csv` into `sis_import.xlsx`. This file requires only two columns: `ID` and `Grade`.
 
@@ -320,7 +334,7 @@ The report includes assignment category weights and maximum points for each assi
 You can generate a grade distribution bar chart as a PNG image for the current class based on the corresponding `metrics.json` file.
 
 > [!NOTE]
-> This feature is implemented in the `src/chart.ts` file. To run it, execute the following command: `pnpm run chart`. 
+> This feature is implemented in the `src/chart.ts` file. To run it, execute the following command: `pnpm run chart`.
 
 This will create a `grade_distribution.png` file in the `data/${CURRENT_CLASS}` folder, visualizing the grade distribution for the class.
 

@@ -11,7 +11,8 @@
     "sis": "tsx --no-warnings ./src/sis.ts",
     "chart": "tsx --no-warnings ./src/chart.ts",
     "build": "tsc",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "chart.js": "^4.4.9",
@@ -20,6 +21,7 @@
     "csv-parse": "^5.6.0",
     "csv-stringify": "^6.5.2",
     "dotenv": "^16.5.0",
+    "prettier": "^3.5.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

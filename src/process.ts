@@ -46,7 +46,7 @@ for (let i = 5; i < header.length; ) {
 
 // Sort assignments alphabetically by name
 const sortedAssignmentCols = [...assignmentCols].sort((a, b) =>
-  a.name.localeCompare(b.name)
+  a.name.localeCompare(b.name),
 );
 
 // Build meta.json

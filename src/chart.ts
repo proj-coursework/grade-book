@@ -27,7 +27,7 @@ const metricsPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "metrics.json"
+  "metrics.json",
 );
 const metrics = JSON.parse(fs.readFileSync(metricsPath, "utf-8"));
 
@@ -37,7 +37,7 @@ const classConfigPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "config.ts"
+  "config.ts",
 );
 
 // Chart output path
@@ -46,7 +46,7 @@ const outputPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "grade_distribution.png"
+  "grade_distribution.png",
 );
 
 // Chart config
@@ -70,7 +70,7 @@ async function main() {
   );
   // Format as '≥97%' for each grade
   const cutoffs = grades.map((g) =>
-    CLASS_GRADE_CUTOFFS[g] !== undefined ? `≥${CLASS_GRADE_CUTOFFS[g]}%` : ""
+    CLASS_GRADE_CUTOFFS[g] !== undefined ? `≥${CLASS_GRADE_CUTOFFS[g]}%` : "",
   );
 
   const configuration = {

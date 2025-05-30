@@ -24,7 +24,7 @@ const firstFiveCols = studentHeader.slice(0, 5);
 // Read meta.json
 const meta = JSON.parse(fs.readFileSync(metaJsonPath, "utf8"));
 const assignmentMeta = Object.fromEntries(
-  meta.assignments.map((a: any) => [a.name, a.max_points])
+  meta.assignments.map((a: any) => [a.name, a.max_points]),
 );
 
 // Dynamic import of class config
@@ -48,7 +48,7 @@ function stddev(arr: number[]) {
   if (arr.length < 2) return 0;
   const m = mean(arr);
   return Math.sqrt(
-    arr.reduce((acc, v) => acc + (v - m) ** 2, 0) / (arr.length - 1)
+    arr.reduce((acc, v) => acc + (v - m) ** 2, 0) / (arr.length - 1),
   );
 }
 function min(arr: number[]) {
@@ -81,7 +81,7 @@ function max(arr: number[]) {
   function findColName(target: string) {
     target = target.trim().toLowerCase();
     return processedAssignmentCols.find(
-      (col) => col.trim().toLowerCase() === target
+      (col) => col.trim().toLowerCase() === target,
     );
   }
 

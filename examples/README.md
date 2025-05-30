@@ -33,17 +33,17 @@ This example shows how to add an extra attribute (such as `team`) to a grade fil
 
 ### Input: teams.csv
 
-| name         | email              | github      | team |
-|--------------|--------------------|-------------|------|
-| Alice Smith  | alice@uni.edu      | alicegit    | 1    |
-| Bob Johnson  | bob@uni.edu        | bobjohnson  | 2    |
+| name        | email         | github     | team |
+| ----------- | ------------- | ---------- | ---- |
+| Alice Smith | alice@uni.edu | alicegit   | 1    |
+| Bob Johnson | bob@uni.edu   | bobjohnson | 2    |
 
 ### Output: grades.csv (with new `team` column)
 
-| First Name | Last Name | Email           | ... | team |
-|------------|-----------|-----------------|-----|------|
-| Alice      | Smith     | alice@uni.edu   | ... | 1    |
-| Bob        | Johnson   | bob@uni.edu     | ... | 2    |
+| First Name | Last Name | Email         | ... | team |
+| ---------- | --------- | ------------- | --- | ---- |
+| Alice      | Smith     | alice@uni.edu | ... | 1    |
+| Bob        | Johnson   | bob@uni.edu   | ... | 2    |
 
 ### Output: teams_errors.json
 

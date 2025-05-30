@@ -41,7 +41,7 @@ async function loadClassConfig() {
   const student = processedRows.find(
     (row) =>
       row["Email"].trim().toLowerCase() ===
-      CURRENT_STUDENT_EMAIL.trim().toLowerCase()
+      CURRENT_STUDENT_EMAIL.trim().toLowerCase(),
   );
   if (!student) {
     console.error("Student not found in processed CSV");
@@ -50,7 +50,7 @@ async function loadClassConfig() {
   const gradesRow = gradesRows.find(
     (row) =>
       row["Email"].trim().toLowerCase() ===
-      CURRENT_STUDENT_EMAIL.trim().toLowerCase()
+      CURRENT_STUDENT_EMAIL.trim().toLowerCase(),
   );
   if (!gradesRow) {
     console.error("Student not found in grades CSV");
@@ -63,7 +63,7 @@ async function loadClassConfig() {
   const email = student["Email"];
   const reportFile = path.join(
     reportsDir,
-    `${firstName}_${lastName}_${email}.md`
+    `${firstName}_${lastName}_${email}.md`,
   );
 
   // Final score and letter grade
@@ -72,7 +72,7 @@ async function loadClassConfig() {
 
   // Assignment meta lookup
   const assignmentMeta = Object.fromEntries(
-    meta.assignments.map((a: any) => [a.name, a.max_points])
+    meta.assignments.map((a: any) => [a.name, a.max_points]),
   );
 
   // Assignment category breakdown
@@ -90,7 +90,7 @@ async function loadClassConfig() {
     for (const assignment of cat.assignments) {
       // Find the assignment column in processedRows (case-insensitive, trimmed)
       const colName = Object.keys(student).find(
-        (k) => k.trim().toLowerCase() === assignment.trim().toLowerCase()
+        (k) => k.trim().toLowerCase() === assignment.trim().toLowerCase(),
       );
       if (colName) {
         const score = student[colName];

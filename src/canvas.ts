@@ -57,7 +57,7 @@ async function loadClassConfig() {
 
   // Build lookup for grades by SID
   const gradesBySID = Object.fromEntries(
-    gradesRows.map((row) => [row["SID"], row])
+    gradesRows.map((row) => [row["SID"], row]),
   );
   const matchedSIDs = new Set<string>();
 

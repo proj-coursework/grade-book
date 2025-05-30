@@ -26,7 +26,9 @@ function mean(arr: number[]) {
 function stddev(arr: number[]) {
   if (arr.length < 2) return 0;
   const m = mean(arr);
-  return Math.sqrt(arr.reduce((sum, x) => sum + (x - m) ** 2, 0) / (arr.length - 1));
+  return Math.sqrt(
+    arr.reduce((sum, x) => sum + (x - m) ** 2, 0) / (arr.length - 1),
+  );
 }
 
 // Helper: load abet.config.ts dynamically (ESM import)
@@ -47,25 +49,44 @@ function findColName(header: string[], target: string) {
     const abetConfig = await loadAbetConfig(abetConfigPath);
     const { CLASS_COURSE_WORK, CLASS_GRADE_CUTOFFS } = abetConfig;
     const meta = JSON.parse(fs.readFileSync(metaJsonPath, "utf8"));
-    const assignmentMeta = Object.fromEntries(meta.assignments.map((a: any) => [a.name, a.max_points]));
+    const assignmentMeta = Object.fromEntries(
+      meta.assignments.map((a: any) => [a.name, a.max_points]),
+    );
 
     // 2. Load grades
     const gradesCsv = fs.readFileSync(gradesPath, "utf8");
-    const grades = csvParse.parse(gradesCsv, { columns: true, skip_empty_lines: true });
+    const grades = csvParse.parse(gradesCsv, {
+      columns: true,
+      skip_empty_lines: true,
+    });
     const header = Object.keys(grades[0]);
 
     // 3. Aggregate per-student SO scores (normalized)
     const soCodes = CLASS_COURSE_WORK.map((so: any) => so.code);
-    const abetAggHeader = ["First Name", "Last Name", "SID", "Email", "Sections", ...soCodes];
+    const abetAggHeader = [
+      "First Name",
+      "Last Name",
+      "SID",
+      "Email",
+      "Sections",
+      ...soCodes,
+    ];
     const abetAggRows: any[] = [];
     const soStudentScores: Record<string, number[]> = {};
     soCodes.forEach((code) => (soStudentScores[code] = []));
 
     for (const row of grades) {
-      const base = [row["First Name"], row["Last Name"], row["SID"], row["Email"], row["Sections"]];
+      const base = [
+        row["First Name"],
+        row["Last Name"],
+        row["SID"],
+        row["Email"],
+        row["Sections"],
+      ];
       const soScores: number[] = [];
       for (const so of CLASS_COURSE_WORK) {
-        let sum = 0, maxPts = 0;
+        let sum = 0,
+          maxPts = 0;
         for (const assign of so.assignments) {
           const colName = findColName(header, assign);
           const score = parseFloat(row[colName] ?? "0");
@@ -80,7 +101,10 @@ function findColName(header: string[], target: string) {
       abetAggRows.push([...base, ...soScores]);
     }
     // Write abet_aggregate.csv
-    const abetAggCsv = csvStringify.stringify(abetAggRows, { header: true, columns: abetAggHeader });
+    const abetAggCsv = csvStringify.stringify(abetAggRows, {
+      header: true,
+      columns: abetAggHeader,
+    });
     fs.writeFileSync(abetAggPath, abetAggCsv);
 
     // 4. Compute stats for abet_meta.json
