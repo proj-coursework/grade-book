@@ -1,7 +1,7 @@
 // Script to generate ABET outcome assessment summary for a class
 
 // Set these variables before running the script
-const CURRENT_CLASS = "spring2025_en_601_264"; // e.g., "spring2025_en_601_264"
+const CURRENT_CLASS = "fall2024_en_601_226"; // e.g., "spring2025_en_601_264"
 
 import * as fs from "fs";
 import * as path from "path";
@@ -27,7 +27,7 @@ function stddev(arr: number[]) {
   if (arr.length < 2) return 0;
   const m = mean(arr);
   return Math.sqrt(
-    arr.reduce((sum, x) => sum + (x - m) ** 2, 0) / (arr.length - 1),
+    arr.reduce((sum, x) => sum + (x - m) ** 2, 0) / (arr.length - 1)
   );
 }
 
@@ -50,7 +50,7 @@ function findColName(header: string[], target: string) {
     const { CLASS_COURSE_WORK, CLASS_GRADE_CUTOFFS } = abetConfig;
     const meta = JSON.parse(fs.readFileSync(metaJsonPath, "utf8"));
     const assignmentMeta = Object.fromEntries(
-      meta.assignments.map((a: any) => [a.name, a.max_points]),
+      meta.assignments.map((a: any) => [a.name, a.max_points])
     );
 
     // 2. Load grades
