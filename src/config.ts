@@ -1,1 +1,5 @@
-export const CURRENT_CLASS = "spring2025_en_601_264";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export const CURRENT_CLASS = process.env.CURRENT_CLASS;
