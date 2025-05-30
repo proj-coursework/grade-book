@@ -75,32 +75,21 @@ The Grade Book is a **fully functional, production-ready system** that has been 
 ### ✅ Example Scripts and Utilities
 
 - **Multi-Section Support** (`examples/combine_sections_assignments.ts`): Combines section-specific assignments
+
   - Merges assignments with section suffixes (e.g., "Quiz 3 - Section 1" + "Quiz 3 - Section 2" → "Quiz 3")
   - Processes `gradescope_processed.csv` to handle multi-section courses
   - Preserves original data structure while combining related assignments
   - Addresses roadmap requirement for multi-section course support
 
+- **Audit Student Removal** (`examples/remove_audit_students.ts`): Removes audit students from grade processing
+  - Reads `audit.csv` file with audit student information
+  - Matches students by SID and removes them from `gradescope_processed.csv`
+  - Creates backup files with `_with_audit` suffix before modification
+  - Updates metadata to reflect correct student count
+  - Generates detailed removal report with summary statistics
+  - Preserves original file structure while filtering out audit students
+
 ## What's Left to Build (Future Enhancements)
-
-### 🔄 Current Roadmap Task: Remove Audit Students Script
-
-**Status**: Ready to implement
-**Priority**: High - Needed for courses with audit students
-
-**Requirements**:
-
-- Create `examples/remove_audit_students.ts` script
-- Remove audit students from `gradescope_processed.csv` file
-- Expect `audit.csv` file in course data folder with same format as gradescope raw data
-- Match students by SID and remove them from processed data
-- Preserve original file structure and format
-
-**Implementation Approach**:
-
-- Read `audit.csv` file to get list of audit student SIDs
-- Filter `gradescope_processed.csv` to exclude audit students
-- Generate new processed file without audit students
-- Document usage in examples README
 
 ### 🔮 Potential Future Improvements
 

@@ -14,17 +14,21 @@
 - ✅ Generates new processed file with combined assignments
 - ✅ Addresses multi-section course support roadmap item
 
-### Next Roadmap Task: Remove Audit Students Script
+### Recently Completed Task: Remove Audit Students Script
 
-**Status**: 🔄 Ready to implement
+**Status**: ✅ Complete - Audit student removal script implemented
 
-**Requirements**:
+**Completed**:
 
-- Create `examples/remove_audit_students.ts` script
-- Remove audit students from `gradescope_processed.csv` file
-- Expect `audit.csv` file in course data folder with same format as gradescope raw data
-- Match students by SID and remove them from processed data
-- Preserve original file structure and format
+- ✅ Created `examples/remove_audit_students.ts` script
+- ✅ Removes audit students from `gradescope_processed.csv` file
+- ✅ Expects `audit.csv` file in course data folder with same format as gradescope raw data
+- ✅ Matches students by SID and removes them from processed data
+- ✅ Preserves original file structure and format
+- ✅ Creates backup files with `_with_audit` suffix
+- ✅ Generates detailed removal report in JSON format
+- ✅ Updates metadata with correct student count
+- ✅ Comprehensive documentation added to examples README
 
 ### Project State Assessment
 
