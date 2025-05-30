@@ -86,17 +86,17 @@ export const CLASS_COURSE_WORK: COURSE_WORK[] = [
 
 export const CLASS_GRADE_CUTOFFS = {
   "A+": 97,
-  "A": 93,
+  A: 93,
   "A-": 90,
   "B+": 87,
-  "B": 83,
+  B: 83,
   "B-": 80,
   "C+": 77,
-  "C": 73,
+  C: 73,
   "C-": 70,
   "D+": 67,
-  "D": 63,
-  "F": 0,
+  D: 63,
+  F: 0,
 };
 ```
 

@@ -431,3 +431,25 @@ Update the scripts to account for a case where we have multiple sections of the 
 ```
 
 In this case, the assignments and the final exam are the same for both sections, but the midterm and quizzes are different. We need, perhaps, a post processing script (to be added to the `examples` folder) that will take the `gradescope_processed.csv` file and updates it to combine, e.g., "Quiz 3 - Section 1" and "Quiz 3 - Section 2" into a single "Quiz 3" column, and so on for the other courseworks.
+
+Here is a plan of action for this:
+
+- Add a new script in the `examples` folder, e.g., `combine_sections_assignments.ts`.
+- Ask the user to create a `sections.config.ts` file in the class folder, which will contain the section-specific assignments to combine. The file should look like this:
+
+  ```typescript
+  export const SECTION_ASSIGNMENTS = [
+    {
+      name: "Midterm",
+      assignments: ["Midterm (Section 1)", "Midterm (Section 2)"],
+    },
+    {
+      name: "Quiz 3",
+      assignments: ["Quiz 3 - Section 1", "Quiz 3 - Section 2"],
+    },
+  ];
+  ```
+
+- The script will read the `gradescope_meta.json`, `gradescope_processed.csv` and the `sections.config.ts` file, and then combine the assignments as specified in the config file. This must result in updating the `gradescope_processed.csv` and `gradescope_meta.json` files to have a single column/entry for each combined assignment. This is needed because the downstream scripts (like `aggregate`, `canvas`, and `sis`) expect a single column for each assignment. We should, however, keep a copy of the original `gradescope_processed.csv` file in the class folder, e.g., `gradescope_processed_original.csv`, so that we can always refer back to it if needed.
+- The script should throw an error if the `assignmnents` in the `sections.config.ts` file do not match the assignments in the `gradescope_meta.json` file or if they don't have the same maximum points.
+- Add a new section in the `examples/README.md` file explaining how to use this script.
