@@ -7,6 +7,7 @@
 **Status**: ✅ Complete - Multi-section assignment combination script implemented
 
 **Completed**:
+
 - ✅ Created `examples/combine_sections_assignments.ts` script
 - ✅ Handles merging section-specific assignments (e.g., "Quiz 3 - Section 1" + "Quiz 3 - Section 2" → "Quiz 3")
 - ✅ Processes `gradescope_processed.csv` to combine assignments with section suffixes
@@ -18,6 +19,7 @@
 **Status**: 🔄 Ready to implement
 
 **Requirements**:
+
 - Create `examples/remove_audit_students.ts` script
 - Remove audit students from `gradescope_processed.csv` file
 - Expect `audit.csv` file in course data folder with same format as gradescope raw data

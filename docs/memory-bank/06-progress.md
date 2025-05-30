@@ -88,6 +88,7 @@ The Grade Book is a **fully functional, production-ready system** that has been 
 **Priority**: High - Needed for courses with audit students
 
 **Requirements**:
+
 - Create `examples/remove_audit_students.ts` script
 - Remove audit students from `gradescope_processed.csv` file
 - Expect `audit.csv` file in course data folder with same format as gradescope raw data
@@ -95,6 +96,7 @@ The Grade Book is a **fully functional, production-ready system** that has been 
 - Preserve original file structure and format
 
 **Implementation Approach**:
+
 - Read `audit.csv` file to get list of audit student SIDs
 - Filter `gradescope_processed.csv` to exclude audit students
 - Generate new processed file without audit students
