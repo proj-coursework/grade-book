@@ -7,6 +7,7 @@
   "author": "Ali Madooei",
   "license": "MIT",
   "scripts": {
+    "interactive": "tsx --no-warnings ./src/interactive.ts",
     "process": "tsx --no-warnings ./src/process.ts",
     "aggregate": "tsx --no-warnings ./src/aggregate.ts",
     "canvas": "tsx --no-warnings ./src/canvas.ts",
@@ -17,6 +18,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@inquirer/prompts": "^8.0.1",
+    "chalk": "^5.6.2",
     "chart.js": "^4.4.9",
     "chartjs-node-canvas": "^5.0.0",
     "chartjs-plugin-datalabels": "^2.2.0",
