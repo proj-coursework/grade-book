@@ -2,6 +2,9 @@
 
 This script demonstrates how to combine section-specific assignments into unified assignments for multi-section classes. This is useful when you have multiple sections of the same class where assignments like quizzes and exams are section-specific, but you want to treat them as a single assignment for grading purposes.
 
+> [!TIP]
+> This script can also combine multiple versions of an assignment into one. For example, if you created different versions of a quiz for makeup exams, you can merge them into a original quiz.
+
 ## How it works
 
 - The script reads a `sections.config.ts` file that defines which section-specific assignments should be combined

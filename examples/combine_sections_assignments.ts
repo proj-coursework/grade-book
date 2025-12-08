@@ -4,7 +4,7 @@ import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
 
 // Configuration - adjust these variables to match your class
-const CURRENT_CLASS = "fall2024_en_601_226";
+const CURRENT_CLASS = "fall2025_en_601_226";
 
 // Type definitions
 type SectionAssignment = {
@@ -35,7 +35,7 @@ function loadSectionsConfig(classPath: string): SectionAssignment[] {
 
   if (!fs.existsSync(configPath)) {
     throw new Error(
-      `sections.config.ts not found in ${classPath}. Please create this file first.`,
+      `sections.config.ts not found in ${classPath}. Please create this file first.`
     );
   }
 
@@ -44,11 +44,11 @@ function loadSectionsConfig(classPath: string): SectionAssignment[] {
 
   // Extract the SECTION_ASSIGNMENTS export using regex
   const match = configContent.match(
-    /export\s+const\s+SECTION_ASSIGNMENTS\s*=\s*(\[[\s\S]*?\]);/,
+    /export\s+const\s+SECTION_ASSIGNMENTS\s*=\s*(\[[\s\S]*?\]);/
   );
   if (!match) {
     throw new Error(
-      "Could not find SECTION_ASSIGNMENTS export in sections.config.ts",
+      "Could not find SECTION_ASSIGNMENTS export in sections.config.ts"
     );
   }
 
@@ -116,7 +116,7 @@ function loadGradescopeProcessed(classPath: string): StudentRecord[] {
  */
 function validateSectionAssignments(
   sectionAssignments: SectionAssignment[],
-  metadata: GradescopeMetadata,
+  metadata: GradescopeMetadata
 ): void {
   const assignmentMap = new Map<string, number>();
   metadata.assignments.forEach((assignment) => {
@@ -129,7 +129,7 @@ function validateSectionAssignments(
     for (const assignmentName of section.assignments) {
       if (!assignmentMap.has(assignmentName)) {
         throw new Error(
-          `Assignment "${assignmentName}" in section "${section.name}" not found in gradescope_meta.json`,
+          `Assignment "${assignmentName}" in section "${section.name}" not found in gradescope_meta.json`
         );
       }
       maxPointsSet.add(assignmentMap.get(assignmentName)!);
@@ -139,7 +139,7 @@ function validateSectionAssignments(
     if (maxPointsSet.size > 1) {
       throw new Error(
         `Assignments in section "${section.name}" have different max points: ${Array.from(maxPointsSet).join(", ")}. ` +
-          `All assignments in a section must have the same max points.`,
+          `All assignments in a section must have the same max points.`
       );
     }
 
@@ -158,7 +158,7 @@ function createBackups(classPath: string): void {
 
   const csvBackupPath = path.join(
     classPath,
-    "gradescope_processed_original.csv",
+    "gradescope_processed_original.csv"
   );
   const metaBackupPath = path.join(classPath, "gradescope_meta_original.json");
 
@@ -179,7 +179,7 @@ function createBackups(classPath: string): void {
  */
 function combineStudentAssignments(
   students: StudentRecord[],
-  sectionAssignments: SectionAssignment[],
+  sectionAssignments: SectionAssignment[]
 ): StudentRecord[] {
   return students.map((student) => {
     const newStudent = { ...student };
@@ -200,9 +200,11 @@ function combineStudentAssignments(
       // Set the combined score (use best score if any assignment has a score, otherwise 0)
       newStudent[section.name] = hasAnyScore ? bestScore : 0;
 
-      // Remove the original section-specific assignments
+      // Remove the original section-specific assignments (skip if same as combined name)
       for (const assignmentName of section.assignments) {
-        delete newStudent[assignmentName];
+        if (assignmentName !== section.name) {
+          delete newStudent[assignmentName];
+        }
       }
     }
 
@@ -215,7 +217,7 @@ function combineStudentAssignments(
  */
 function updateMetadata(
   metadata: GradescopeMetadata,
-  sectionAssignments: SectionAssignment[],
+  sectionAssignments: SectionAssignment[]
 ): GradescopeMetadata {
   const assignmentMap = new Map<string, Assignment>();
   metadata.assignments.forEach((assignment) => {
@@ -287,7 +289,7 @@ function saveUpdatedCSV(classPath: string, students: StudentRecord[]): void {
  */
 function saveUpdatedMetadata(
   classPath: string,
-  metadata: GradescopeMetadata,
+  metadata: GradescopeMetadata
 ): void {
   const metaPath = path.join(classPath, "gradescope_meta.json");
 
@@ -301,7 +303,7 @@ function saveUpdatedMetadata(
 function main(): void {
   try {
     console.log(
-      `🚀 Starting section assignment combination for ${CURRENT_CLASS}`,
+      `🚀 Starting section assignment combination for ${CURRENT_CLASS}`
     );
 
     const classPath = path.join("data", CURRENT_CLASS);
@@ -314,13 +316,13 @@ function main(): void {
     console.log("📖 Loading sections configuration...");
     const sectionAssignments = loadSectionsConfig(classPath);
     console.log(
-      `   Found ${sectionAssignments.length} section groups to combine`,
+      `   Found ${sectionAssignments.length} section groups to combine`
     );
 
     console.log("📖 Loading gradescope metadata...");
     const metadata = loadGradescopeMetadata(classPath);
     console.log(
-      `   Found ${metadata.assignments.length} assignments for ${metadata.counts.students} students`,
+      `   Found ${metadata.assignments.length} assignments for ${metadata.counts.students} students`
     );
 
     console.log("📖 Loading gradescope processed data...");
@@ -340,13 +342,13 @@ function main(): void {
     console.log("🔄 Combining section assignments...");
     const updatedStudents = combineStudentAssignments(
       students,
-      sectionAssignments,
+      sectionAssignments
     );
     const updatedMetadata = updateMetadata(metadata, sectionAssignments);
 
     console.log(`   Combined ${sectionAssignments.length} section groups`);
     console.log(
-      `   New assignment count: ${updatedMetadata.assignments.length} (was ${metadata.assignments.length})`,
+      `   New assignment count: ${updatedMetadata.assignments.length} (was ${metadata.assignments.length})`
     );
 
     // Save updated data
@@ -358,13 +360,13 @@ function main(): void {
     console.log("\n📋 Summary:");
     sectionAssignments.forEach((section) => {
       console.log(
-        `   • Combined "${section.assignments.join('", "')}" → "${section.name}"`,
+        `   • Combined "${section.assignments.join('", "')}" → "${section.name}"`
       );
     });
   } catch (error) {
     console.error(
       "❌ Error:",
-      error instanceof Error ? error.message : String(error),
+      error instanceof Error ? error.message : String(error)
     );
     process.exit(1);
   }
