@@ -5,11 +5,11 @@
   "window.autoDetectColorScheme": true, // Automatically detect the color scheme
   "window.zoomLevel": 1, // Set the default zoom level
   "editor.fontSize": 18, // Set the default font size
-  "editor.lineHeight": 1.8, // Set the default line height
-  "editor.fontFamily": "MonoLisa", // Set the default font family
+  "editor.lineHeight": 1.6, // Set the default line height
+  "editor.fontFamily": "JetBrains Mono", // Set the default font family
   "terminal.integrated.fontSize": 18, // Set the default terminal font size
-  "terminal.integrated.lineHeight": 1.8, // Set the default terminal line height
-  "terminal.integrated.fontFamily": "MonoLisa", // Set the default terminal font family
+  "terminal.integrated.lineHeight": 1, // Set the default terminal line height
+  "terminal.integrated.fontFamily": "JetBrains Mono NL", // Set the default terminal font family
   "editor.minimap.enabled": false, // Disable the minimap
   "editor.tabSize": 2, // Set the default tab size
   "editor.wordWrap": "off", // Enable word wrap
@@ -17,5 +17,12 @@
   "editor.formatOnSave": true, // Format the code on save
   "editor.defaultFormatter": "esbenp.prettier-vscode", // Set the default formatter
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["chartjs", "Gradescope"] // Set the TypeScript SDK
+  "cSpell.words": [
+    "chartjs",
+    "esbuild",
+    "gradebook",
+    "Gradescope",
+    "Madooei",
+    "subfolders"
+  ] // Set the TypeScript SDK
 }
