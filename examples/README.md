@@ -27,10 +27,17 @@ Combines section-specific assignments into unified assignments for multi-section
 
 ### 4. Remove Audit Students
 
-**Script:** `remove_audit_students.ts`  
+**Script:** `remove_audit_students.ts`
 **Documentation:** [remove_audit_students.md](./remove_audit_students.md)
 
 Removes audit students from processed grade data. Filters out students who should not be included in final grade calculations or Canvas/SIS exports.
+
+### 5. Grade Gap Analysis
+
+**Script:** `grade_gap_analysis.ts`
+**Documentation:** [grade_gap_analysis.md](./grade_gap_analysis.md)
+
+Compares student performance between two configurable groups of assignments. Calculates normalized scores and outputs the gap between them. Useful for identifying students whose performance varies across different types of coursework (e.g., exams vs homeworks, midterm vs final).
 
 ## General Usage Pattern
 
