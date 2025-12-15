@@ -340,5 +340,14 @@ This will create a `grade_distribution.png` file in the `data/${CURRENT_CLASS}` 
 
 You can embed this PNG in your reports or share it with students as needed.
 
-> [!TIP]
-> You can set the `SHOW_CUTOFF_LABELS` flag to `false` to hide the grade cutoff labels, among other configurable flags.
+### Chart Configuration Options
+
+The following flags can be configured at the top of `src/chart.ts`:
+
+| Flag         | Description                                                                                                                                            | Default     |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `LABEL_MODE` | Controls what is displayed above each bar: `"cutoffs"` shows grade thresholds (e.g., ≥97%), `"counts"` shows number of students, `"none"` hides labels | `"cutoffs"` |
+| `BG_COLOR`   | Background color of the chart (`"white"` or `"transparent"`)                                                                                           | `"white"`   |
+| `WIDTH`      | Chart width in pixels                                                                                                                                  | `800`       |
+| `HEIGHT`     | Chart height in pixels                                                                                                                                 | `600`       |
+| `RESOLUTION` | Chart resolution (pixel ratio for high-DPI displays)                                                                                                   | `2`         |

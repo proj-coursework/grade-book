@@ -7,7 +7,8 @@ import { Chart, registerables } from "chart.js";
 import { fileURLToPath } from "url";
 
 // ---- CONFIGURABLE FLAGS ----
-const SHOW_CUTOFF_LABELS = true; // Set to false to hide grade cutoff labels
+// Label mode: "cutoffs" shows grade cutoff thresholds (e.g., ≥97%), "counts" shows number of students, "none" hides labels
+const LABEL_MODE: "cutoffs" | "counts" | "none" = "counts";
 const BG_COLOR = "white"; // Set to 'white' for white background, or 'transparent' for transparent background
 const WIDTH = 800; // Chart width in pixels
 const HEIGHT = 600; // Chart height in pixels
@@ -27,7 +28,7 @@ const metricsPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "metrics.json",
+  "metrics.json"
 );
 const metrics = JSON.parse(fs.readFileSync(metricsPath, "utf-8"));
 
@@ -37,7 +38,7 @@ const classConfigPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "config.ts",
+  "config.ts"
 );
 
 // Chart output path
@@ -46,7 +47,7 @@ const outputPath = path.join(
   "..",
   "data",
   CURRENT_CLASS,
-  "grade_distribution.png",
+  "grade_distribution.png"
 );
 
 // Chart config
@@ -70,7 +71,7 @@ async function main() {
   );
   // Format as '≥97%' for each grade
   const cutoffs = grades.map((g) =>
-    CLASS_GRADE_CUTOFFS[g] !== undefined ? `≥${CLASS_GRADE_CUTOFFS[g]}%` : "",
+    CLASS_GRADE_CUTOFFS[g] !== undefined ? `≥${CLASS_GRADE_CUTOFFS[g]}%` : ""
   );
 
   const configuration = {
@@ -91,17 +92,19 @@ async function main() {
           display: true,
           text: "Grade Distribution",
         },
-        datalabels: SHOW_CUTOFF_LABELS
-          ? {
-              anchor: "end",
-              align: "end", // Place label above the bar
-              formatter: (_: any, context: any) => cutoffs[context.dataIndex],
-              font: { weight: "bold" },
-              color: "#333",
-            }
-          : {
-              display: false,
-            },
+        datalabels:
+          LABEL_MODE === "none"
+            ? { display: false }
+            : {
+                anchor: "end",
+                align: "end", // Place label above the bar
+                formatter: (_: any, context: any) =>
+                  LABEL_MODE === "cutoffs"
+                    ? cutoffs[context.dataIndex]
+                    : counts[context.dataIndex],
+                font: { weight: "bold" },
+                color: "#333",
+              },
       },
     },
   };
