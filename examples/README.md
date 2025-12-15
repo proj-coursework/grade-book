@@ -39,6 +39,13 @@ Removes audit students from processed grade data. Filters out students who shoul
 
 Compares student performance between two configurable groups of assignments. Calculates normalized scores and outputs the gap between them. Useful for identifying students whose performance varies across different types of coursework (e.g., exams vs homeworks, midterm vs final).
 
+### 6. Merge External Column
+
+**Script:** `merge_external_column.ts`
+**Documentation:** [merge_external_column.md](./merge_external_column.md)
+
+Merges a column from an external CSV file into `gradescope_processed.csv`. Useful for incorporating grade data from sources outside Gradescope (such as attendance systems, Canvas exports, or participation tracking) into the grade calculation. Matches students by configurable columns (e.g., SID to SIS User ID).
+
 ## General Usage Pattern
 
 All scripts follow a similar pattern:
