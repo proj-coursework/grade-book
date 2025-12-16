@@ -112,6 +112,15 @@ async function main() {
   const buffer = await chartJSNodeCanvas.renderToBuffer(configuration as any);
   fs.writeFileSync(outputPath, buffer);
   console.log(`Chart saved as ${outputPath}`);
+
+  // Print grade distribution as markdown table
+  console.log("\nGrade Distribution:\n");
+  console.log("| Grade | Cutoff | Count |");
+  console.log("|-------|--------|-------|");
+  grades.forEach((grade, index) => {
+    const cutoff = CLASS_GRADE_CUTOFFS[grade] !== undefined ? `≥${CLASS_GRADE_CUTOFFS[grade]}%` : "N/A";
+    console.log(`| ${grade.padEnd(5)} | ${cutoff.padEnd(6)} | ${String(counts[index]).padEnd(5)} |`);
+  });
 }
 
 main();
